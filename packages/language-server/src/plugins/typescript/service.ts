@@ -119,7 +119,7 @@ async function createLanguageService(
     // Load all configs within the tsconfig scope and the one above so that they are all loaded
     // by the time they need to be accessed synchronously by DocumentSnapshots to determine
     // the default language.
-    await configLoader.loadConfigs(workspacePath);
+    await configLoader.preloadConfigs(workspacePath);
 
     const svelteModuleLoader = createSvelteModuleLoader(getSnapshot, compilerOptions);
 

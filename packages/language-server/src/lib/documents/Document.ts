@@ -25,7 +25,7 @@ export class Document extends WritableDocument {
 
     constructor(public url: string, public content: string) {
         super();
-        this.configPromise = configLoader.awaitConfig(this.getFilePath() || '');
+        this.configPromise = configLoader.getConfig(this.getFilePath() || '');
         this.updateDocInfo();
     }
 
@@ -52,7 +52,7 @@ export class Document extends WritableDocument {
             );
         };
 
-        const config = configLoader.getConfig(this.getFilePath() || '');
+        const config = configLoader.getConfigSync(this.getFilePath() || '');
         if (config && !config.loadConfigError) {
             update(config);
         } else {
